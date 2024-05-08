@@ -1,0 +1,4 @@
+<launch>
+    <rosparam file="$(find doggy_control)/config/gazebodog.yaml" command="load"/>
+    <node pkg="doggy_control" type="mpc_debug" name="mpc_debug" output="screen"/>
+</launch>

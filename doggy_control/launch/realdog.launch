@@ -1,0 +1,7 @@
+<launch>
+    <rosparam file="$(find doggy_control)/config/realdog.yaml" command="load"/>
+    <include file="$(find doggy_joy)/launch/doggy_joy.launch">
+        <arg name="joy_type" value="real"/>
+    </include>
+    <node pkg="doggy_control" type="realdog_node" name="realdog_node" output="screen"/>
+</launch>

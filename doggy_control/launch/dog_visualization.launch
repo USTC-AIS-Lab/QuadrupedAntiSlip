@@ -1,0 +1,21 @@
+<launch>
+    <arg name="rname" default="a1"/>
+    <arg name="robot_path" value="(find $(arg rname)_description)"/>
+    <arg name="user_debug" default="false"/>
+    <arg name="state_pub" default="true"/>
+    <arg name="dollar" value="$"/>
+    
+    
+    <param name="robot_description"
+           command="$(find xacro)/xacro '$(arg dollar)$(arg robot_path)/xacro/robot.xacro' 
+           DEBUG:=$(arg user_debug)"/>
+
+    <group if="$(eval state_pub == true)">
+        <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"
+            respawn="false" output="screen">
+            <remap from="/joint_states" to="/dog_info/joint_states"/>
+        </node>
+    </group>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find doggy_control)/config/rviz/dog_visualization.rviz" />
+
+</launch>

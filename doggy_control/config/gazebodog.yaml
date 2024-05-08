@@ -1,0 +1,234 @@
+use_sim_time: true
+grf_update_intervel_ms: 2.5 #ms
+main_update_intervel_ms: 2.5 #ms
+hardware_feedback_intervel_ms: 2.0 #ms
+
+max_torque: 25
+tilt_threshold: 0.35
+
+robot_mass: 13
+trunk_inertia_x: 0.18 # 0.0158533
+trunk_inertia_y: 0.9 # 0.0377999
+trunk_inertia_z: 1.4 # 0.0456542
+
+friction_mu: 0.7
+
+
+default_foot_pos_x_abs: 0.17
+default_foot_pos_y_abs: 0.15
+
+
+default_body_height: 0.26
+
+gravity_compensation: 4
+
+foot_force_filter: 0.95
+foot_contact_threshold: 30.0
+foot_force_offset_fl: 0.0
+foot_force_offset_fr: 0.0
+foot_force_offset_rl: 0.0
+foot_force_offset_rr: 0.0
+
+terrain_angle_filter: 0.9
+
+kp_foot_x: 800
+kp_foot_y: 500
+kp_foot_z: 500
+
+kd_foot_x: 150.0 #5
+kd_foot_y: 150.0 #5
+kd_foot_z: 150.0 #5
+
+kp_foot_max: 80 
+kd_foot_max: 60 
+
+max_lin_acc: 2.2
+max_ang_acc: 5.0
+
+controller: mpc
+
+use_ground_truth_pose: false
+
+
+
+qp_controller:
+  kp_angular_x: 100.0
+  kp_angular_y: 100.0
+  kp_angular_z: 38 # 1.0
+  kp_angular_d: 1.0
+
+  kd_angular_x: 4.5
+  kd_angular_y: 4.5
+  kd_angular_z: 8.0 # 30.0
+
+  kp_linear_x: 100.0
+  kp_linear_y: 100.0
+  kp_linear_z: 100.0
+  kp_linear_d: 1.0
+
+  kd_linear_x: 40.0 # 20.0
+  kd_linear_y: 40.0 # 7.0
+  kd_linear_z: 40.0 # 12.0
+
+  qp_alpha: 0.01 # punish force
+  qp_beta: 0.01 # smooth
+  qp_s_pos_x: 1.0
+  qp_s_pos_y: 1.0
+  qp_s_pos_z: 1.0
+  qp_s_ang_x: 400 # 400.0
+  qp_s_ang_y: 400 # 400.0
+  qp_s_ang_z: 100.0
+
+  constraint_f_max: 160.0
+  constraint_f_min: 0.0
+
+mpc_controller:
+  prediction_dt: 0.05
+  q_weights_0: 60 #0.01 # 20.0 # roll
+  q_weights_1: 90 #0.01 # 10.0 # pitch
+  q_weights_2: 90 #2 # 1.0 # yaw
+
+  q_weights_3: 30 # 0.01 # 100.0 # pos x
+  q_weights_4: 30 # 0.01 # 100.0 # pos y
+  q_weights_5: 250 # 2 # 100.0 # pos z
+
+  q_weights_6: 1 # 30 # omega x
+  q_weights_7: 1 # 30 # omega y
+  q_weights_8: 3 # 50 # omega z
+
+  q_weights_9: 5 # 30 # 30.0 # vel x
+  q_weights_10: 5 # 30 # 30.0 # vel y
+  q_weights_11: 1 # 100 # 10.0 # vel z
+
+  q_weights_12: 0.0
+
+  k_q_n: 1.0
+
+  r_weights_0: 0.0001
+  r_weights_1: 0.0001
+  r_weights_2: 0.0001
+
+  r_weights_3: 0.0001
+  r_weights_4: 0.0001
+  r_weights_5: 0.0001
+
+  r_weights_6: 0.0001
+  r_weights_7: 0.0001
+  r_weights_8: 0.0001
+
+  r_weights_9: 0.0001
+  r_weights_10: 0.0001
+  r_weights_11: 0.0001
+  
+  constraint_f_max: 180.0
+  constraint_f_min: 0.0
+
+  kp_angular_x: 0.0 # 10.0
+  kp_angular_y: 0.0 # 10.0
+  kp_angular_z: 0.0 # 15.0
+
+  ki_angular_x: 0
+  ki_angular_y: 0
+  ki_angular_z: 0
+
+
+  kp_linear_x: 0.3
+  kp_linear_y: 0.3
+  kp_linear_z: 0.3
+
+  ki_linear_x: 0.0
+  ki_linear_y: 0.0
+  ki_linear_z: 0.0
+  
+
+  lin_vel_p_max_x: 0.1 # 0.0
+  lin_vel_p_max_y: 0.1 # 0.0
+  lin_vel_p_max_z: 0.1 # 0.0
+
+  lin_vel_i_max_x: 0.0 # 0.1
+  lin_vel_i_max_y: 0.0 # 0.1
+  lin_vel_i_max_z: 0.0
+
+  ang_vel_p_max_x: 0.0
+  ang_vel_p_max_y: 0.0
+  ang_vel_p_max_z: 0.0
+
+  ang_vel_i_max_x: 0.0 #1.0
+  ang_vel_i_max_y: 0.0 #1.0
+  ang_vel_i_max_z: 0.0
+
+
+  roll_delta_max: 0.3
+  pitch_delta_max: 0.3
+  yaw_delta_max: 0.3
+  body_height_max_delta: 0.1
+  max_pos_error: 0.05
+  save_log: false
+
+
+walk_gait:
+  max_vel_x: 0.6
+  max_vel_y: 0.5
+  max_vel_yaw_rate: 1.5
+
+  
+  foot_height: 0.15
+  touch_down: 0.01
+
+
+  gait_span_fl: 500
+  gait_span_fr: 500
+  gait_span_rl: 500
+  gait_span_rr: 500
+  initial_phase_fl: 0.0
+  initial_phase_fr: 0.5
+  initial_phase_rl: 0.5
+  initial_phase_rr: 0.0
+  swing_phase_fl: 0.5
+  swing_phase_fr: 0.5
+  swing_phase_rl: 0.5
+  swing_phase_rr: 0.5
+  
+  # gait_span_fl: 1000
+  # gait_span_fr: 1000
+  # gait_span_rl: 1000
+  # gait_span_rr: 1000
+  # initial_phase_fl: 0.0
+  # initial_phase_fr: 0.5
+  # initial_phase_rl: 0.75
+  # initial_phase_rr: 0.25
+  # swing_phase_fl: 0.25
+  # swing_phase_fr: 0.25
+  # swing_phase_rl: 0.25
+  # swing_phase_rr: 0.25
+
+  
+
+  # initial_phase_fl: 0.5
+  # initial_phase_fr: 0.5
+  # initial_phase_rl: 0.5
+  # initial_phase_rr: 0.5
+  
+
+  com_offset_ratio: 1.0
+
+pee:
+  max_vel_x: 0.3
+  max_vel_y: 0.3
+  max_vel_yaw_rate: 0.5
+
+probe_gait:
+  probe_leg: 1
+  gait_spansteps: 800
+  com_offset_ratio: 1.5
+  probe_foot_offset_abs_x: 0.1
+  probe_foot_offset_abs_y: -0.1
+  foot_height: 0.1
+  body_height: 0.2
+
+anti_slip:
+  impedance_kp: 1200.0
+  impedance_kd: 100.0
+  impedance_f_max: 120.0
+  detect_kd: 5.0
+  

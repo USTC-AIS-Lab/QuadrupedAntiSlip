@@ -1,0 +1,5 @@
+<launch>
+    <arg name="joy_type" default="real"/>
+    <rosparam file="$(find doggy_joy)/config/doggy_joy_$(arg joy_type).yaml" command="load"/>
+    <node pkg="doggy_joy" type="doggy_joy_node" name="doggy_joy_node" output="screen"/>
+</launch>

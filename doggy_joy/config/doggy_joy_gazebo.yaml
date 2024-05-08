@@ -1,0 +1,8 @@
+doggy_joy:
+  max_vel_x: 1
+  max_vel_y: 1
+  max_yaw_rate: 1
+  max_body_roll: 1
+  max_body_pitch: 1
+  max_body_yaw: 1
+  body_height_max_delta: 1

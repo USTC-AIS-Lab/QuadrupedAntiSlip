@@ -1,0 +1,7 @@
+<launch>
+    <rosparam file="$(find doggy_control)/config/gazebodog.yaml" command="load"/>
+    <include file="$(find doggy_joy)/launch/doggy_joy.launch">
+        <arg name="joy_type" value="gazebo"/>
+    </include>
+    <node pkg="doggy_control" type="gazebodog_node" name="gazebodog_ctrl_node" output="screen"/>
+</launch>
